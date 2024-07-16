@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:5000');
+const socket = io('https://dishes-app.onrender.com');
 
 function App() {
   const [dishes, setDishes] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/dishes')
+    axios.get('https://dishes-app.onrender.com/api/dishes')
       .then(response => {
         setDishes(response.data);
       });
@@ -23,7 +23,7 @@ function App() {
   }, []);
 
   const togglePublished = (dishId) => {
-    axios.put(`http://localhost:5000/api/dishes/${dishId}/toggle`)
+    axios.put(`https://dishes-app.onrender.com/api/dishes/${dishId}/toggle`)
       .then(response => {
         setDishes(prevDishes => 
           prevDishes.map(dish => 
