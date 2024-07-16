@@ -1,4 +1,4 @@
-
+require('dotenv').config();
 const mongoose = require('mongoose');
 const Dish = require('./dishmodels');
 
@@ -37,10 +37,10 @@ const sampleData = [
 
 
 
-const url = 'mongodb+srv://mongo:3Yg7zWTaCmTb1Ots@cluster0.slsdvon.mongodb.net/DishesDB';
+const mongourl = process.env.url;
 
 
-mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(mongourl, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('Connected to MongoDB');
     const promises = sampleData.map(dishData => {

@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -10,15 +11,15 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-const port = 5000;
+const port = process.env.port;
 
 app.use(bodyParser.json());
 app.use(cors());
 
 app.use(bodyParser.json());
 app.use(cors());
-const url = 'mongodb+srv://mongo:3Yg7zWTaCmTb1Ots@cluster0.slsdvon.mongodb.net/DishesDB';
-mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+const mongourl = process.env.url;
+mongoose.connect(mongourl, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('Connected to MongoDB');
 
